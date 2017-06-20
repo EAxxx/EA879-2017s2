@@ -11,3 +11,8 @@ E-mail: tavares [at] dca [dot] fee [dot] unicamp [dot] br
 
 ## Atividades e prazos
 
+Prazo | Tarefa
+----- | ------
+ ?    | [Instalar o ambiente computacional](PREPARAR.md) e laboratório: [contador de palavras](http://www.github.com/EAxxx/contador-de-palavras)
+
+

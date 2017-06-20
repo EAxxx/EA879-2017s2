@@ -52,13 +52,22 @@ Uma tarefa essencial nesse ponto é **instalar o Git através do Apt-get**. Se v
 conseguiu fazer isso sem problemas, então deve prosseguir; caso contrário, deve
 retomar os tutoriais ou procurar outras fontes.
 
-## GCC, Make, Lex, Yacc
-
-* make
-
 ## Git
-* git clone
-* git commit
-* git push
-* git pull
+Uma vez que você tenha instalado o Git, deve passar para a próxima atividade,
+que é implementar um contador de palavras a ser entregue usando o próprio Git.
+Se você nunca usou o Git ou o GitHub, pode seguir o
+[vídeo-tutorial](https://youtu.be/QnIuS2rbF38) sobre esse assunto. Caso
+contrário, navegue diretamente para o [repositório da
+tarefa](http://www.github.com/EAxxx/contador-de-palavras) e siga as instruções
+no diretório `doc`.
+
+Essencialmente, o que faremos é disponibilizar a tarefa em um repositório. Cada
+um deverá criar um *fork* próprio desse repositório, e subir suas alterações
+para esse seu repositório próprio. Depois do prazo da tarefa, um script
+automático baixará todos os repositórios e executará scripts de teste
+automático.
+
+Depois de ter completado todas essas tarefas e estar confiante de que seu
+ambiente computacional funciona, coloque seu nome, e-mail, RA e username do
+github na [planilha de alunos](uXYW0w3HRU0zqq3vGCvGfsKcLUemb84eq).
 
