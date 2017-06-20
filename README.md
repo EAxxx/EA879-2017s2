@@ -7,6 +7,7 @@ E-mail: tavares [at] dca [dot] fee [dot] unicamp [dot] br
 ## Informações sobre o curso
 * [Ementa, bibliografia, Critério de
   Avaliação e Calendário de Aulas](https://www.overleaf.com/read/tybhrzcjjxsr)
+* [Instalação do ambiente computacional](PREPARAR.md)
 
 ## Atividades e prazos
 
