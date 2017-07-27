@@ -14,7 +14,12 @@ typedef enum {
   STB, /* Guarda conteudo de B na posicao de memoria estabelecida */
   SUM, /* Soma registradores A e B e guarda o resultado em A */
   SUB, /* Subtrai regitradores A e B e guarda o resultado em A */
-  JZ /* Se o conteudo de A for zero, pula para posicao de memoria determinada */
+  JZ, /* Se o conteudo de A for zero, pula para posicao de memoria determinada */
+
+  /* Instrucoes nao-implementadas ainda */
+  LLDA, /* Carrega literal para registrador A */
+  LLDB, /* Carrega literal para registrador B */
+  DECA /* Decrementa registrador A em 1 */
 } instrucao;
 
 
