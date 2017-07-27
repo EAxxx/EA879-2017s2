@@ -19,7 +19,9 @@ typedef enum {
   /* Instrucoes nao-implementadas ainda */
   LLDA, /* Carrega literal para registrador A */
   LLDB, /* Carrega literal para registrador B */
-  DECA /* Decrementa registrador A em 1 */
+  PLDB, /* Carrega em B o conteudo da memoria apontada por A */
+  DECA, /* Decrementa registrador A em 1 */
+  JNZ /* Se o conteudo de A nao for zero, pula para a posicao de memoria especificada */
 } instrucao;
 
 
