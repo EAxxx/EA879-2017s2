@@ -1,0 +1,66 @@
+
+\useepackage[utf8]{inputenc}
+\usepackage[portuges, brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{ae}
+\usepackage{pgfgantt}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{url}
+\usepackage{marginnote}
+\usepackage{tikz}
+\usepackage{makeidx}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage[Sonny]{fncychap}
+\usepackage{hyperref}
+\usepackage[left=2.0cm,right=2.0cm,bottom=2cm,top=2cm]{geometry}
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Large\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{-10pt}{\Large\bfseries}
+
+
+
+%\titleformat{\chapter}[display]
+%{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-30pt}{20pt}
+
+\onehalfspacing
+
+\usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,%
+decorations.pathreplacing,decorations.pathmorphing,shapes,%
+    matrix,shapes.symbols,fit}
+    \tikzstyle{block} = [rectangle, draw, fill=white!100,
+        text width=8em, text centered, rounded corners, minimum
+            height=2em]
+            \tikzstyle{block2} = [rectangle, draw, fill=gray!20,
+                text width=8em, text centered, minimum height=2em]
+
+                    \tikzstyle{block3} = [rectangle, draw, fill=none,
+                        text width=8em, text centered, rounded corners, minimum
+                            height=2em]
+
+                                \tikzstyle{line} = [draw, -latex']
+
+                                \newcommand{\vout}{$V_{\mbox{out}}$}
+                                \newcommand{\vin}{$V_{\mbox{in}}$}
+
+
+                                \usepackage{listings}
+                                \lstdefinestyle{customc}{
+                                  belowcaptionskip=1\baselineskip,
+                                    breaklines=true,
+                                      frame=L,
+                                        xleftmargin=\parindent,
+                                          language=C,
+                                            showstringspaces=false,
+                                              basicstyle=\footnotesize\ttfamily,
+                                                keywordstyle=\bfseries\color{green!40!black},
+                                                  commentstyle=\itshape\color{purple!40!black},
+                                                    identifierstyle=\color{blue},
+                                                      stringstyle=\color{orange},
+                                                      }

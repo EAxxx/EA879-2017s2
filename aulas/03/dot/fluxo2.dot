@@ -1,0 +1,8 @@
+digraph G {
+ ranksep = 0.2
+ INIT [label="Inicio"]
+ A0 [label="A"]
+ A1 [label="B"]
+ INIT -> A0 -> A1
+}
+

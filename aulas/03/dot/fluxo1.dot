@@ -1,0 +1,21 @@
+digraph G {
+
+  "Adicionar água" -> "Ligar fogo"
+  "Ligar fogo" -> "Esperar 5min"
+ "Esperar 5min" -> "Não ferveu"
+  "Esperar 5min" -> "Ferveu"
+
+"Não ferveu" -> "Esperar 5min"
+
+//  "Esperar 5min" -> "Verificar fervura"
+//  "Verificar fervura" -> "Ferveu?"
+//  "Ferveu?" -> "Esperar 5min" [label="Não", color="red"]
+//  "Ferveu?" -> "Adicionar chá" [label="Sim", color="blue"]
+ "Ferveu" -> "Adicionar chá"
+  A [label="Esperar 5min"]
+  "Adicionar chá" -> A
+  A -> "Servir"
+
+
+}
+
