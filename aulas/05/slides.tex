@@ -1,0 +1,112 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[05-Análise Léxica]{EA879 -- Introdução ao Software Básico\\Análise Léxica}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 05 -- 15/agosto/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender o que é e como usar o Lex.
+    \item Entender a sintaxe do Lex.
+    \item Entender como compilar programas usando Lex.
+    \item Construir uma pequena aplicação usando Lex.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício}
+  \centering
+  No código abaixo, identifique os liteirais inteiros e os números em ponto
+  flutuante:
+
+  \begin{verbatim}
+  a = 50;
+  b = 50.5 + 20;
+  c = 60.2;
+  \end{verbatim}
+
+\end{frame}
+
+\begin{frame}{Exercício}
+  Ordene as instruções abaixo de forma a permitir reconhecer floats e inteiros
+  num código:
+  \begin{enumerate}
+    \item Aplicar expressão regular \textsc{[0-9]+}
+    \item Aplicar expressão regular \textsc{[0-9]+[.][0-9]*}
+    \item Aplicar expressão regular \textsc{[0-9]*}
+    \item Caso sucesso, encontrei inteiro
+    \item Caso sucesso, encontrei float
+    \item Caso contrário...
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Live Coding}
+  \centering
+  \Large
+  Lex é uma ferramenta que permite programar reconhecedores de tipos e criar
+  programas que têm comportamentos distintos ao receber entradas de tipos
+  diferentes.
+\end{frame}
+
+\begin{frame}{Exercício}
+  \centering
+  \large
+  Proponha uma modificação ao programa feito ao vivo que permita somar todos os
+  literais tipo int encontrados na string de entrada.
+\end{frame}
+
+\begin{frame}{Discussão}
+\large
+  Até o momento, neste curso, vimos uma série de conteúdo sobre expressões
+  regulares. Junto ao seu grupo, faça um mapa conceitual sobre expressões
+  regulares:
+  \begin{enumerate}
+    \item Escreva numa folha de papel (espalhe bem!) os \textbf{nomes} de todos
+      os conceitos que fizeram parte da aula (por exemplo: \textit{expressão
+      regular} e \textit{sintaxe}). Se quiser, inclua conceitos que não fizeram
+      parte da aula mas que foram importantes.
+    \item Após, ligue os nomes usando setas rotuladas por verbos, dando
+      significado à sua lista de nomes (por exemplo: \textit{sintaxe}
+      \textcolor{red}{permite programar} \textit{expressão regular}). Tente
+      ligar todos os conceitos do seu mapa.
+  \end{enumerate}
+
+\end{frame}
+
+
+
+\end{document}
