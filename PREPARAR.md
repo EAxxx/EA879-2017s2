@@ -69,5 +69,6 @@ automático.
 
 Depois de ter completado todas essas tarefas e estar confiante de que seu
 ambiente computacional funciona, coloque seu nome, e-mail, RA e username do
-github na [planilha de alunos](uXYW0w3HRU0zqq3vGCvGfsKcLUemb84eq).
+github na [planilha de
+alunos](https://docs.google.com/spreadsheets/d/1hdRJ6x1k8z7EWyCopSWsbs0XxGkAuuMX3qWbBn8uLVE/edit?usp=sharing).
 
