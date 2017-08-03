@@ -10,4 +10,4 @@ y.tab.c:calc1.y
 	bison -dy calc1.y
 
 clean:
-	rm y.tab.c lex.yy.c lex.yy.h main
+	rm y.tab.c lex.yy.c y.tab.h main

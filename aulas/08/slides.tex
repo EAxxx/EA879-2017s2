@@ -1,0 +1,169 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[08-Variáveis]{EA879 -- Introdução ao Software Básico\\Variáveis}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 08 -- 15/agosto/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender como implementar variáveis em linguagens de programação
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Revisão}
+  \centering
+  \large
+  Em C, quais das linhas abaixo contém operações de atribuição?
+  \begin{verbatim}
+    a = 5;
+    a = (b==3);
+    if (a==1) exit();
+    int b;
+    c = a + b + d;
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Análise de código}
+  \centering
+  \large
+  Junto ao seu grupo, analise o código da calculadora com variáveis. No código
+  Yacc:
+  \begin{enumerate}
+    \item Que tokens estão associados à operação de atribuição?
+    \item Quantas variáveis diferentes podem ser armazenadas nesta calculadora?
+  \end{enumerate}
+
+  No código Lex:
+  \begin{enumerate}
+    \item Que expressão regular é usada para reconhecer variáveis no código?
+    \item Que operador é usado para representar uma operação de atribuição?
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Análise de código}
+  \centering
+  \large
+    Trace as árvores sintáticas, identificando as regras que foram ativadas, que
+    permite resolver as expressões:
+    \begin{verbatim}
+    a = 5 + 6
+    b = a + 12
+    \end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Análise de código}
+  \centering
+  \large
+    Uma operação de atribuição com auto-referência, ou seja:
+
+    \begin{verbatim}
+    a = a + 1
+    \end{verbatim}
+
+    deverá ser válida nesta linguagem?
+\end{frame}
+
+\begin{frame}[fragile]{Variando as variáveis}
+  \centering
+  \large
+  As variáveis que temos para nossa calculadora são decritas por caracteres
+  minúsculos. Identifique os problemas que poderemos encontrar por isso:
+  \begin{enumerate}
+    \item Os nomes das variáveis não correspondem semanticamente ao seu
+      conteúdo.
+    \item Não será possível fazer programas para nossa calculadora.
+    \item Não será possível salvar nossas variáveis em disco.
+    \item Talvez eu precise de mais variáveis que o sistema me disponibiliza.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Problema: o arquivo de alunos}
+\large
+Um problema que temos hoje na disciplina é encontrar rapidamente dados (notas e
+  avaliações) relacionados a algum aluno específico. Uma possível solução para
+  isso é conseguir uma pasta de arquivos (daquelas verdes, com pastas supensas)
+  e usá-la para guardar os dados todos.
+  \begin{enumerate}
+    \item Como cada pasta poderia ser identificada?
+    \item Como as pastas poderiam estar organizadas entre si?
+    \item O que deveria ser o conteúdo de cada pasta?
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Problema: o arquivo de alunos terceirizado}
+\large
+Decidimos então que nossos arquivos estão ficando muito abarrotados e ocupando
+  as salas da FEEC que poderiam ser convertidas numa sala de vivência com café e
+  sofá para todos. Por isso, terceirizamos a tarefa de guardar os dados. Porém,
+  ainda precisamos acessá-los sob demanda. Então, contratamos a empresa
+  GMF (Green Metal Files) para fazer a guarda dos arquivos.
+  \begin{enumerate}
+    \item Quando queremos acessar dados de um aluno, o que precisamos fornecer à
+      GMF? O que ela deveria enviar como resposta ao nosso pedido?
+    \item Quando queremos colocar um novo aluno, o que precisamos fornecer à
+      GMF? O que ela deveria enviar como resposta ao nosso pedido?
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Metáfora Antropomórfica}
+\Large
+\centering
+  É possível traçar um paralelo entre o arquivo de alunos e variáveis em um
+  sistema. Nesse caso, o que o nome da variável representa? E o que o conteúdo
+  da variável representa?
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Cabeçalhos de funções de armazenamento}
+\large
+  Poderíamos definir funções para armazenar dados em um ``espaço de
+  armazenamento'', de forma que pudéssemos definir os rótulos desses dados ao
+  longo do programa. Nesse caso, precisaríamos de duas funções:
+
+  \begin{verbatim}
+  TIPO1 armazenar(ARGUMENTOS1);
+  TIPO2 recuperar(ARGUMENTOS2);
+  \end{verbatim}
+
+  Defina o tipo e os argumentos de cada uma das funções.
+\end{frame}
+
+
+\end{document}
