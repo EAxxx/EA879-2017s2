@@ -1,0 +1,102 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[07-Yacc]{EA879 -- Introdução ao Software Básico\\Yacc}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 07 -- 15/agosto/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender o que é e como usar o Yacc.
+    \item Entender a sintaxe do Yacc.
+    \item Entender como compilar programas usando Yacc.
+    \item Construir uma pequena aplicação usando Yacc.
+    \item Entender o que é análise sintática.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício}
+  \centering
+  Resolva a expressão abaixo passo a passo:
+
+  $5 + 3 \times (3 + 2) - 10$
+
+  \begin{enumerate}
+  \item Em que ordem a expressão foi resolvida? Por que?
+  \item Quantas regras de formação diferentes foram usadas?
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Exercício}
+  Ordene as instruções abaixo de forma a permitir resolver expressões.
+  \begin{enumerate}
+    \item Resolver somas e subtrações, na ordem que aparecem, gerando expressões equivalente.
+    \item Resolver multiplicações e divisões, na odem que aparecem, gerando expressões equivalente.
+    \item Resolver expressões entre parênteses, na ordem que aparecem, gerando
+      expressão equivalente.
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Live Coding}
+  \centering
+  \Large
+  Yacc é uma ferramenta que permite programar regras de formação baseadas nos
+  tokens gerados pelo Lex, e associar comportamentos específicos à aplicação de
+  regras de formação específicas.
+\end{frame}
+
+\begin{frame}{Exercício}
+  \centering
+  \large
+  Proponha uma modificação ao programa feito ao vivo para incorporar parênteses
+  à calculadora.
+\end{frame}
+
+\begin{frame}{Análise sintática de C}
+\large
+  Mostre as regras de formação (gramática livre de contexto!) capazes de reconhecer:
+  \begin{enumerate}
+    \item Expressões matemáticas vãlidas
+    \item Operações de atribuição
+    \item Variáveis que já foram declaradas anteriormente
+  \end{enumerate}
+\end{frame}
+
+
+
+\end{document}
