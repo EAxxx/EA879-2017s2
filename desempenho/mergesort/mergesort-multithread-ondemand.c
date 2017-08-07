@@ -107,7 +107,7 @@ void* mergesort(void *args) {
   arg2.vetor = &(vetor[M]);
   arg2.N = N-M;
 
-  if (n_threads_ativas < n_max_threads) {
+  if ( (n_threads_ativas < n_max_threads) && (N < 20000) && (N>1000)) {
     n_threads_ativas += 1;
     threaded = 1;
     pthread_create(&(auxiliar), NULL, mergesort, &(arg1));
