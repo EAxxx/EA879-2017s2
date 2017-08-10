@@ -112,14 +112,15 @@ void multiplicar(matriz **A, matriz **B, matriz **C) {
 int main(int argv, char **argc) {
   int lado = atoi(argc[1]);
   clock_t t0, t1, t2;
-  matriz *A, *B;
+  matriz *A, *B, *C;
 
   t0=clock();
   nova_matriz_rand(&A, lado, lado);
+  nova_matriz_rand(&C, lado, lado);
 
   t1=clock();
   nova_matriz(&B, lado, lado);
-  multiplicar(&A, &A, &B);
+  multiplicar(&A, &C, &B);
   t2=clock();
 
   printf("Teste com matriz lado N=%d\n", lado);

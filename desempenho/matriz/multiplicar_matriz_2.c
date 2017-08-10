@@ -97,19 +97,26 @@ void multiplicar(matriz **A, matriz **B, matriz **C) {
 int main(int argv, char **argc) {
   int lado = atoi(argc[1]);
   clock_t t0, t1, t2;
-  matriz *A, *B;
+  matriz *A, *B, *C;
 
   t0=clock();
   nova_matriz_rand(&A, lado, lado);
+  nova_matriz_rand(&C, lado, lado);
 
   t1=clock();
   nova_matriz(&B, lado, lado);
-  multiplicar(&A, &A, &B);
+  multiplicar(&A, &C, &B);
   t2=clock();
 
   printf("Teste com matriz lado N=%d\n", lado);
   printf("Tempo para gerar matriz: %f\n", 1000*(double)(t1-t0)/CLOCKS_PER_SEC);
   printf("Tempo para multiplicar: %f\n", 1000*(double)(t2-t1)/CLOCKS_PER_SEC);
+
+#ifdef FLAG_IMPRIMIR
+  imprimir(&A);
+  imprimir(&C);
+  imprimir(&B);
+#endif
 
   return 0;
 }
