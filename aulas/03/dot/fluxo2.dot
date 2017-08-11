@@ -1,8 +1,12 @@
 digraph G {
  ranksep = 0.2
- INIT [label="Inicio"]
- A0 [label="A"]
- A1 [label="B"]
- INIT -> A0 -> A1
+ nodesep = 1
+ INIT [label="0"]
+ S0 [label="1"]
+ S1 [label="2"]
+ INIT -> S0 [label="A"]
+ S0-> S1 [label="B"]
+ S0 -> INIT [label="else"]
+ S1 -> INIT [label="else"]
 }
 
