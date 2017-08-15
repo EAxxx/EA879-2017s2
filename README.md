@@ -13,6 +13,9 @@ E-mail: tavares [at] dca [dot] fee [dot] unicamp [dot] br
 
 Prazo | Tarefa
 ----- | ------
- ?    | [Instalar o ambiente computacional](PREPARAR.md) e laboratório: [contador de palavras](http://www.github.com/EAxxx/contador-de-palavras)
+ 14/08    | [Instalar o ambiente computacional](PREPARAR.md) e laboratório: [contador de palavras](http://www.github.com/EAxxx/contador-de-palavras)
+ 21/08    | Exercício no Moodle: Expressões Regulares
+ 28/08    | Laboratório: [e-mail scrapper](https://github.com/EAxxx/emailscrapper)
+
 
 
