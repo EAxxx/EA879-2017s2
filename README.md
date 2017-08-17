@@ -16,6 +16,9 @@ Prazo | Tarefa
  14/08    | [Instalar o ambiente computacional](PREPARAR.md) e laboratório: [contador de palavras](http://www.github.com/EAxxx/contador-de-palavras)
  21/08    | Exercício no Moodle: Expressões Regulares
  28/08    | Laboratório: [e-mail scrapper](https://github.com/EAxxx/emailscrapper)
+ 04/09    | Exercício no Moodle: Gramáticas Livres de Contexto
+ 12/09    | Primeira versão do relatório do trabalho 1
+ 19/09    | Versão final do relatório do trabalho 1
 
 
 
