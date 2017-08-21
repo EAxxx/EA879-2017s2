@@ -1,0 +1,167 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[11-contexto-e-preempcao]{EA879 -- Introdução ao Software
+Básico\\Revezamento de Processos}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 11 -- 15/agosto/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender por que programas diferentes não conseguem acessar a memória
+      RAM dedicada aos outros.
+    \item Entender como é possível alternar entre dois programas sem que um
+      influencie o outro.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Simuladores}
+  \centering
+  \Large
+  Junto ao seu grupo, faça uma lista com todos os elementos (exemplo: program
+  counter) que devem ser
+  incorporados a um simulador para que ele consiga executar programas compilados
+  para alguma arquitetura.
+\end{frame}
+
+
+\begin{frame}[fragile]{Memória}
+  \centering
+  \large
+  Associe os tipos aos conceitos:
+  \begin{tabular}{|c|p{5cm}|} \\ \hline
+  int & Posição de memória que contém o endereço de uma posição de memória onde
+    está armazenado um número. \\ \hline
+  int* & Posição de memória onde está armazenado um número. \\ \hline
+  void* & Posição de memória que contém o endereço de uma posição de memória
+    cujo conteúdo é desconhecido. \\ \hline
+  \end{tabular}
+\end{frame}
+
+
+\begin{frame}[fragile]{Memória}
+  \centering
+  \large
+  Gostaríamos de isolar a memória que é usada por dois programas diferentes, de
+  forma que um não possa acessar a memória do outro. Discuta com seu grupo a
+  seguinte solução: o sistema de administração de memória atribui um
+  \textit{offset} a todos os pedidos de conteúdo de memória de um programa. Esse
+  \textit{offset} é único para cada programa.
+\end{frame}
+
+\begin{frame}[fragile]{Memória}
+  \centering
+  \large
+  Gostaríamos de isolar a memória que é usada por dois programas diferentes, de
+  forma que um não possa acessar a memória do outro. Discuta com seu grupo a
+  seguinte solução: o sistema de administração de memória atribui um
+  \textit{offset} a todos os pedidos de conteúdo de memória de um programa. Esse
+  \textit{offset} é único para cada programa. Além disso, o sistema de
+  administração sabe quanta memória cada programa usa, e restringe
+  intencionalmente o acesso a memória fora do segmento pré-determinado.
+\end{frame}
+
+
+\begin{frame}[fragile]{Memória}
+  \centering
+  \large
+  \textit{... o sistema de
+  administração sabe quanta memória cada programa usa, e restringe
+  intencionalmente o acesso a memória fora do segmento pré-determinado.}
+
+  Junto ao seu grupo, atribua um nome à falha referente à tentativa de acesso
+  ilegal a um segmento de memória não-autorizado.
+\end{frame}
+
+
+\begin{frame}[fragile]{Segmentação}
+  \centering
+  \large
+  Faça um desenho mostrando a memória física de um computador. Um programa está
+  operando no segmento que vai dos endereços físicos 0 a 49, e outro está operando no
+  segmento que vai dos endereços físicos 50 a 99. Ambos executam o código:
+  \begin{verbatim}
+  int *a = 0;
+  (*a) = 12;
+  \end{verbatim}
+
+  Mostre o conteúdo da memória física do computador (assumindo que ela foi
+  inicializada em zero) ao fim dos dois programas.
+\end{frame}
+
+
+\begin{frame}[fragile]{Processos}
+  \centering
+  \large
+  Dois programas diferentes, em um computador com sistema operacional moderno,
+  operam em espaços de memória diferentes e não precisam ``saber'' um da
+  existência do outro. Cada programa executando num computador é chamado de
+  \textit{processo} -- no sentido de ser algo que pode ser executado por um
+  processador.
+\end{frame}
+
+\begin{frame}{Pausando um simulador}
+  \large
+  Suponha que um simulador de microprocessador possa ser
+  ``pausado'' antes de ser desligado, e
+  depois retome quando ligado novamente. Quais elementos (de
+  hardware e software) devem ser restaurados para garantir que o simulador
+  retome sua operação \textit{exatamente do mesmo ponto} que estava antes de ser
+  pausado?
+\end{frame}
+
+\begin{frame}{Pausando processo}
+  \large
+Suponha que um processo, num computador, possa ser
+  ``pausado'' antes do computador ser desligado, e
+  depois retome quando o computador é ligado novamente. Quais elementos (de
+  hardware e software) devem ser restaurados para garantir que o processo
+  retome sua operação \textit{exatamente do mesmo ponto} que estava antes de ser
+  pausado?
+\end{frame}
+
+\begin{frame}{Mudando de processos}
+  \large
+  Suponha que um processo A, num computador, será ``pausado'' para que outro
+  processo B passe a ser executado. Mostre todos os passos necessários para
+  passar do processo A ao processo B, e depois para retomar o processo A, sem
+  que haja perda de informação nesse processo.
+\end{frame}
+
+
+
+\end{document}
