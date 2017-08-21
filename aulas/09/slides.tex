@@ -1,0 +1,155 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[09-multitasking-tempo-real]{EA879 -- Introdução ao Software
+Básico\\Multitasking em tempo real}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 09 -- 15/agosto/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender como
+      sistemas podem parecer executar várias tarefas ao mesmo tempo.
+    \item Enteder as restrições que o aspecto multitarefa implica para os
+      programadores.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Revisão: interrupções}
+  \centering
+  \large
+  Ordene os eventos que acontecem durante uma chamada de interrupção externa num
+  microcontrolador:
+  \begin{enumerate}
+    \item Dispositivo eletrônico emite borda de subida num pino do MCU.
+    \item MCU interrompe o que está executando.
+    \item MCU retoma o que estava executando.
+    \item Flag de interrupção é ativada.
+    \item Flag de \textit{enable} na interrupção é ativada.
+    \item Endereço da rotina de interrupção é colocada no vetor de interrupções.
+    \item MCU executa chamada de função marcada no vetor de interrupções.
+    \item Rotina de interrupção encerra.
+    \item Evento físico acontece.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Análise de código}
+  \centering
+  \large
+  Quais linhas abaixo travam o MCU num laço?
+  \begin{verbatim}
+  int main() {
+    while (1) {
+      acende_led(1); /* Acende o LED 1 */
+      wait(500); /* espera 500ms */
+      apaga_led(1);
+      wait(500);
+    }
+  }
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Análise de código}
+  \centering
+  \large
+  Modifique o código abaixo para que o LED 2 pisque com o dobro do período do
+  LED 1. Após, modifique-o novamnete de tal forma que o LED 3 pisque com dez
+  vezes o período do LED 1.
+  \begin{verbatim}
+  int main() {
+    while (1) {
+      acende_led(1);
+      wait(500); /* espera 500ms */
+      apaga_led(1);
+      wait(500);
+    }
+  }
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Pão com manteiga na chapa e limonada}
+  \centering
+  \large
+  Mostre, através de um diagrama, um processo que permita a uma pessoa espremer
+  50 limões e fazer 50 pães com manteiga na chapa sem que ela perca tempo
+  esperando o pão com manteiga ficar pronto e sem que o pão com manteiga queima,
+  sabendo que o tempo que leva entre um pão ficar pronto e ele queimar é menor
+  que o tempo que leva para espremer um limão. Que tipos de alarmes são
+  necessários para que isso seja possível?
+\end{frame}
+
+\begin{frame}[fragile]{Um pequeno kernel de tempo real}
+  \centering
+  \large
+  Analise o código do kernel de tempo real. Identifique:
+  \begin{enumerate}
+    \item Quais variáveis são responsáveis pelo controle de fluxo na função main()
+    \item Como essas variáveis são modificadas
+    \item Qual é e qual evento ativa a função de interrupção
+    \item De quanto em quanto tempo cada uma das funções auxiliares é chamada
+    \item Como é possível alterar o período de chamadas de cada uma das funções
+      auxiliares
+    \item Como é possível adicionar uma nova função auxiliar periódica nesta
+      estrutura
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Operando com o kernel}
+  \centering
+  \large
+  Modifique o código do kernel para que ele possa fazer piscarem três LEDS, com
+  períodos 1s, 3s e 10s. Como esse código se compara com o que foi proposto
+  anteriormente?
+\end{frame}
+
+\begin{frame}[fragile]{Restrições do RT-Kernel}
+  \centering
+  \large
+  Qual seria a consequência das seguintes eventualidades em funções periódicas
+  num programa baseado na  estrutura de kernel de tempo real:
+  \begin{enumerate}
+  \item Alterar uma variável global
+  \item Ter período igual ao relacionado a outra função
+  \item Levar mais tempo que seu próprio período
+  \item Levar mais tempo que o período da rotina de interrupção
+  \item Entrar em loop infinito
+  \end{enumerate}
+
+\end{frame}
+
+
+\end{document}
