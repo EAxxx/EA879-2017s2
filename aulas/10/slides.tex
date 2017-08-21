@@ -1,0 +1,187 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[10-compartilhamento-de-recursos]{EA879 -- Introdução ao Software
+Básico\\Políticas de Compartilhamento de Recursos}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 10 -- 15/agosto/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender o que significam recursos compartilhados.
+    \item Entender o impacto de políticas de administração de recursos.
+    \item Refletir sobre quem deve administrar os recursos compartilhados.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Problema: recursos compartilhados}
+  \centering
+  \large
+  Na Fictícia Escola de Engenharia de Computação, há 100 alunos, mas apenas 1
+  computador. Isso é um problema porque há uma disciplina que pede que alunos
+  enviem, individualmente, programas de computador ao SUper SIstema. Junto ao
+  seu grupo, proponha 3 formas diferentes de organizar o uso do computador,
+  sabendo que todos os alunos têm o mesmo prazo e que alguns alunos demoram mais
+  tempo que outros para fazer programas de computador.
+\end{frame}
+
+\begin{frame}[fragile]{First Come, First Serve (FCFS)}
+  \centering
+  \large
+  O primeiro aluno que sentou no computador continua a usá-lo até terminar sua
+  tarefa. Os seguintes fazem uma fila e executam o mesmo procedimento.
+  \begin{enumerate}
+  \item Qual fração do tempo é perdida fazendo login na máquina ou salvando
+      o trabalho?
+  \item Como seria possível ``quebrar'' esse sistema, dominando completamente o
+    computador indefinidamente?
+
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Round-Robin}
+  \centering
+  \large
+  Os alunos que querem usar o computador fazem uma fila. Ao sentar-se no
+  computador, um aluno pode usá-lo por 1 minuto, e depois deve retornar ao fim
+  da fila, cedendo sua vez ao próximo.
+  \begin{enumerate}
+  \item Qual fração do tempo é perdida fazendo login na máquina ou salvando
+      o trabalho?
+  \item Como seria possível reduzir essa fração?
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Prazos diferenciados}
+  \centering
+  \large
+  Os alunos da Fictícia Escola de Engenharia de Computação se dividiram em duas
+  turmas, A e B. Os alunos da turma A têm que entregar um código daqui a 24h. Os
+  alunos da turma B têm que entregar um código na semana que vem. Proponha uma
+  nova forma de organização, levando em consideração esse novo prazo.
+\end{frame}
+
+\begin{frame}[fragile]{Trabalhos diferenciados}
+  \centering
+  \large
+  Os alunos da Fictícia Escola de Engenharia de Computação se dividiram em duas
+  turmas, A e B. O prazo de entrega do trabalho de todos eles é o mesmo (daqui a
+  uma semana), mas os alunos da turma A têm que entregar somente uma função que
+  avalia expressões regulares, enquanto os alunos da turma B têm que entregar um
+  webserver com sete níveis de segurança e interface ``touchscreen'' para iPhone
+  e Android. Proponha uma nova forma de organização, levando em consideração os
+  tamanhos diferenciados dos trabalhos.
+\end{frame}
+
+\begin{frame}[fragile]{Round-Robin com prioridades}
+  \centering
+  \large
+  Cada aluno recebe um número chamado \textit{prioridade}. A cada bloco de tempo
+  (15 minutos, por exemplo), o usuário do computador é trocado pelo próximo da
+  fila. Porém, um aluno não pode assumir a máquina se outro aluno, com
+  prioridade mais alta, também estiver na fila.
+  \begin{enumerate}
+    \item Como seriam formas efetivas de definir as prioridades?
+    \item Como seria possível ``quebrar'' o sistema, evitando que outros alunos
+      usem a máquina?
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Round-Robin com prioridades e proporção}
+  \centering
+  \large
+  Cada aluno recebe um número chamado \textit{prioridade}. O computador é
+  revezado pelos alunos (round-robin) de forma que o bloco de tempo atribuído a
+  cada aluno é proporcional à sua prioridade.
+  \begin{enumerate}
+  \item Como seriam formas efetivas de definir as prioridades?
+  \item Como seria possível ``quebrar'' o sistema, evitando que outros alunos
+    usem a máquina?
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Sistemas de computação}
+  \centering
+  \Large
+  No caso dos alunos da Fictícia Escola, qual é o \textit{recurso
+  compartilhado}? E, quando executamos programas no computador, quais recursos
+  são compartilhados? Em que situação dois programas ``disputam'' para usar o
+  mesmo recurso?
+\end{frame}
+
+\begin{frame}[fragile]{Sistemas de computação}
+  \centering
+  \Large
+  Através da sua observação, os programas que executam no seu celular operam em
+  fila (first-come, first-serve) ou em rodízio (round-robin)? Por que você acha
+  isso?
+\end{frame}
+
+\begin{frame}[fragile]{Sistemas de computação}
+  \centering
+  \Large
+  O algoritmo kernel de tempo real que vimos na aula passada opera como fila
+  (first-come, first-serve) ou em rodízio (round-robin)? Por que você acha isso?
+  Seria possível mudar esse comportamento? Como?
+\end{frame}
+
+
+\begin{frame}[fragile]{Sistemas de computação}
+  \centering
+  \large
+  Reflita junto ao seu grupo e decida quais alternativas são verdadeiras em
+  relação ao revezamento do computador na Fictícia Escola:
+  \begin{enumerate}
+    \item Precisamos ``salvar'' o que cada aluno está fazendo para que ele
+      possa retomar seu trabalho posteriormente.
+    \item Cada um pode ser responsável por controlar seu próprio tempo de uso
+      do computador.
+    \item Uma equipe de administração deve ser responsável por controlar o tempo
+      do computador.
+    \item É desejável que cada aluno tenha uma ``área de trabalho''
+      isolada dos demais.
+    \item É desejável que existam áreas de disco que podem ser compartilhadas
+      entre alunos.
+    \item Para fazer seu trabalho, um aluno não precisa saber de nenhuma
+      informação sobre o trabalho dos outros alunos, apenas de quando será sua
+      vez de usar novamente o computador.
+  \end{enumerate}
+
+\end{frame}
+
+
+\end{document}
