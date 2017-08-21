@@ -25,7 +25,7 @@ int main() {
   /* Criar area de memoria compartilhada */
   void *b;
   b = (void*) mmap(NULL, sizeof(int)*100, protection, visibility, 0, 0);
-  if (b==-1) printf("Erro de alocacao!\n");
+  if ((int)b==-1) printf("Erro de alocacao!\n");
   int L = 10;
   memcpy(b, &L, sizeof(int));
 
