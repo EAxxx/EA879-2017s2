@@ -1,0 +1,174 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[06a-Gramáticas]{EA879 -- Introdução ao Software Básico\\Gramáticas e
+Aplicações}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 06-A -- 28/agosto/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender problemas que podem ser abordados usando gramáticas
+    \item Entender quais propriedades de gramáticas são relevantes para cada
+      problema
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Problemas com Gramáticas Regulares}
+  \large
+  Como é possível modelar os seguintes problemas usando gramáticas regulares:
+  \begin{enumerate}
+    \item Gerar uma string que corresponde a um número inteiro
+    \item Detectar se uma string corresponde a um número inteiro
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Problemas com Gramáticas Livres de Contexto}
+  \large
+  Como é possível modelar os seguintes problemas usando gramáticas livres de
+  contexto:
+  \begin{enumerate}
+    \item Gerar uma expressão matemática com parêntese balanceados
+    \item Detectar se uma expressão matemática tem parênteses balanceados
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Inteligência Computacional: tipos de modelos}
+  \large
+  Abordagem gerativa (generative model)
+  \begin{enumerate}
+    \item Encontrar um modelo capaz de gerar o fenômeno que quero detectar
+    \item Verificar se minha medição corresponde ao modelo
+  \end{enumerate}
+
+  Abordagem discriminativa (discriminative model)
+  \begin{enumerate}
+    \item Encontrar um modelo capaz de separar os fenômenos que quero
+      classificar
+    \item Verificar o resultado de aplicar o modelo sobre a minha medição
+  \end{enumerate}
+
+  Qual abordagem corresponde à de usar gramáticas?
+\end{frame}
+
+\begin{frame}{Criando modelos}
+\large
+  Quais dos problemas abaixo podem ser modelados usando gramáticas regulares ou
+  gramáticas livres de contexto? Como cada modelo pode ser usado? Quais são suas
+  limitações?
+  \begin{enumerate}
+    \item Gerar CPFs válidos
+    \item Gerar sequências de notas musicais (representadas por números
+      inteiros, onde 1 = dó e 7 = si, e sem considerar durações)
+    \item Gerar uma expressão matemática
+    \item Gerar conjugações de verbos à partir de um radical
+    \item Gerar estruturas (sequências de versos e refrões) de músicas
+      populares
+    \item Gerar expressões matemáticas que expandem um resultado específico
+    \item Gerar frases válidas em Português
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Tipos de problemas}
+\large
+  Quais tipos de problemas abaixo indicam o uso de gramáticas regulares? E quais
+  poderiam ser resolvidos usando gramáticas livres de contexto?
+  \begin{enumerate}
+    \item Gerar sequências de tokens, cada um sem relação com o token anterior.
+    \item Gerar sequências de tokens cujo agrupamento tem significado.
+    \item Separar sílabas de uma palavra em portugês.
+    \item Verificar se uma frase tem sujeito e verbo.
+    \item Verificar se uma frase musical (sequência de notas) só tem notas que
+      correpondem a uma escala.
+    \item Compor uma estrutura musical adequada para ser tocada pela bateria da
+      LEU.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Problemas gerais}
+\large
+  Proponha um modelo, usando gramáticas, para cada um dos problemas abaixo (não
+  precisa implementar, somente explicar como o modelo deve ser usado)
+  \begin{enumerate}
+    \item Partindo de um vocabulário de jogadas elementares de futebol (chutar,
+      passar, correr, etc.), construir uma tática capaz de ganhar um jogo.
+    \item Transformar frases escrita em ordem direta de tal forma que a saída
+      soe como se fosse falada pelo Mestre Yoda.
+    \item Verificar se uma frase tem concordância verbal em relação a número.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Problemas avançados}
+\large
+  Proponha um modelo, usando gramáticas, para cada um dos problemas abaixo (não
+  precisa implementar, somente explicar como o modelo deve ser usado)
+  \begin{enumerate}
+    \item Reconhecer o significado de uma frase.
+    \item Gerar uma frase com significado conhecido.
+    \item Traduzir uma frase de uma língua para outra, mantendo o significado.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{E o que mais?}
+\large
+Junto ao seu grupo, proponha um problema que pode ser modelado usando gramáticas
+livres de contexto. Como o modelo deve ser usado? Por que ele é adequado ao seu
+problema?
+\end{frame}
+
+\begin{frame}{Referências}
+\large
+  Para saber mais sobre alguns dos problemas que conversamos:
+  \begin{enumerate}
+\item X. Xu and H. Man, "Interpreting sports tactic based on latent context-free
+  grammar," 2015 IEEE International Conference on Image Processing (ICIP),
+      Quebec City, QC, 2015, pp. 4072-4076.
+\item E. Nakamura, M. Hamanaka, K. Hirata and K. Yoshii, "Tree-structured
+  probabilistic model of monophonic written music based on the generative theory
+      of tonal music," 2016 IEEE International Conference on Acoustics, Speech
+      and Signal Processing (ICASSP), Shanghai, 2016, pp. 276-280.
+ \item P. Bahadur, A. Jain and D. S. Chauhan, "Architecture of English to
+   Sanskrit machine translation," 2015 SAI Intelligent Systems Conference
+      (IntelliSys), London, 2015, pp. 616-624.
+  \end{enumerate}
+\end{frame}
+
+
+
+
+
+
+\end{document}
