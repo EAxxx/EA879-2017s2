@@ -14,6 +14,7 @@ int main() {
     if (c=='c')
       contador++;
   }
+  pclose(fp);
 
   printf("Encontrei %d letras c\n", contador);
   return 0;
