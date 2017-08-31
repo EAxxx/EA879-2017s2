@@ -74,7 +74,7 @@ deverá escrever na tela o valor máximo entre todos os valores dos pixels de
 Para este trabalho, deverão ser entregues:
 
 1. O código-fonte da linguagem implementada, num repositório Git do grupo
-1. Relatório (de **uma página, em coluna dupla, fontes Times New Roman 10**!),
+1. Relatório (trata-se de um texto **científico**, com **uma página, em coluna dupla, fontes Times New Roman 10**!),
 contendo:
   1. **Contextualização**, isto é, um breve texto introdutório explicando do que se
      trata o documento, em uma linguagem que poderia ser entendida por qualquer
