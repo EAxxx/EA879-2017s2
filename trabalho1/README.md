@@ -90,7 +90,13 @@ contendo:
      grupo considere relevantes)
 
 
+# Datas importantes
 
+1. 12/setembro: nesta data, os trabalhos deverão estar concluídos. Importante:
+   levar na aula **uma cópia impressa do relatório para cada membro do grupo**,
+   pois neste dia faremos uma seção de revisão do texto.
+1. 19/setembro: data final para entrega do relatório revisado e do código-fonte
+   no Git, conforme as especificações neste texto.
 
 
 
