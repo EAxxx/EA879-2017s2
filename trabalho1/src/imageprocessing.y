@@ -28,6 +28,7 @@ EXPRESSAO:
         imagem I = abrir_imagem($3);
         printf("Li imagem %d por %d\n", I.width, I.height);
         salvar_imagem($1, &I);
+        liberar_imagem(&I);
                           }
 
     ;
