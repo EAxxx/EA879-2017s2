@@ -1,0 +1,171 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[12-posix-e-processos]{EA879 -- Introdução ao Software
+Básico\\Processos e POSIX}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 12 -- 15/agosto/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender como sistemas POSIX administram os processos que executam na
+      máquina.
+    \item Entender como implementar sistemas multiprocesso em C.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Os contadores de letras}
+  \centering
+  \Large
+  Um gerente tem um time de estagiários (quantos quiser)
+  numa equipe que deve contar as letras existentes em livros. Como seria uma boa
+  forma de organizar a equipe de forma a acelerar ao máximo o processo de
+  contagem?
+\end{frame}
+
+\begin{frame}[fragile]{Os contadores de letras}
+  \centering
+  \large
+  Um gerente tem um time de estagiários (quantos quiser)
+  numa equipe que deve contar as letras existentes em livros. Como seria uma boa
+  forma de organizar a equipe de forma a acelerar ao máximo o processo de
+  contagem?
+
+  \begin{enumerate}
+    \item Quantas tarefas existem?
+    \item Quantos trabalhadores são necessários? Por que?
+    \item Como é possível coordenar o trabalho, mantendo registro de quem já
+      terminou suas tarefas
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Análise de código}
+  \centering
+  \large
+  A instrução \textsc{fork()} divide o processo que a chama em um processo pai e
+  um processo filho. Assim, é possível criar duas linhas de execução isoladas
+  em uma mesma base de código. Ver: multiprocesso.c.
+\end{frame}
+
+\begin{frame}[fragile]{Segmentação de memória}
+  \centering
+  \Large
+  Por que a alteração de uma variável no processo-filho não tem impacto na
+  variável do processo-pai e vice-versa?
+\end{frame}
+
+\begin{frame}[fragile]{Programas responsivos}
+  \centering
+  \large
+  Um programa que baixa vídeos da Internet funciona da seguinte forma:
+  \begin{enumerate}
+    \item Espera usuário clicar um botão e verifica qual é
+    \item Se o botão é o baixar
+      \begin{enumerate}
+        \item Conecta-se com servidor
+        \item Baixa vídeo
+        \item Grava vídeo em um local permanente no computador
+        \item Volta para o primeiro passo
+      \end{enumerate}
+     \item Se o botão é de terminar, encerra programa
+  \end{enumerate}
+
+  Considerando somente esse fluxo de execução, o que acontece se o usuário
+  clicar o botão para baixar vídeos e, logo em seguida (antes do vídeo terminar
+  de baixar), tentar encerrar o programa?
+\end{frame}
+
+\begin{frame}[fragile]{Programas responsivos}
+  \centering
+  \large
+  \begin{enumerate}
+    \item Espera usuário clicar um botão e verifica qual é
+    \item Se o botão é o baixar
+      \begin{enumerate}
+        \item Conecta-se com servidor
+        \item Baixa vídeo
+        \item Grava vídeo em um local permanente no computador
+        \item Volta para o primeiro passo
+      \end{enumerate}
+     \item Se o botão é de terminar, encerra programa
+  \end{enumerate}
+
+  Quais dessas instruções poderiam ser colocadas em um processo-filho, de forma
+  que a interface com o usuário continuasse funcionando durante o download? Ou,
+  em C: onde deveria entrar uma instrução \textsc{fork()}?
+\end{frame}
+
+\begin{frame}[fragile]{Interface separada de implementação}
+  \centering
+  \Large
+  Analise de código: interfacemultiprocesso.c.
+\end{frame}
+
+\begin{frame}[fragile]{Tabela de processos POSIX}
+  \centering
+  \Large
+  Em POSIX, processos são identificados por um identificador chamado Process
+  ID (ou, em português, identificador de processo). Os PIDs dos processos em
+  execução são guardados numa tabela que pode ser acessada usando o comando
+  \textsc{ps}.
+
+  Se você decidir encerrar um processo, pode usar o comando \textsc{kill [pid]}
+  para informá-lo que deve ser encerrado.
+\end{frame}
+
+\begin{frame}[fragile]{Posicionamento}
+  \centering
+  \large
+  Associe a sistemas de tempo real em um microcontrolador usando scheduler
+  ou a sistemas multi-processo:
+  \begin{enumerate}
+    \item Uma tarefa pode durar quanto tempo quiser sem que isso tenha um
+      impacto grande nas outras tarefas;
+    \item Todas as tarefas compartilham as mesmas variáveis e espaços de memória;
+    \item Os programadores devem estar cientes das outras tarefas que também
+      executarão no sistema;
+    \item Uma tarefa pode ser interrompida para que outra tarefa seja executada;
+    \item É possível criar novas tarefas à medida que novos pedidos vão
+      chegando;
+    \item O tempo de execução de uma tarefa é previsível
+  \end{enumerate}
+\end{frame}
+
+
+
+
+\end{document}
