@@ -40,6 +40,6 @@ int main() {
       if (a==3) kill(filho, SIGQUIT); /* Termina filho */
     } while (a >  0);
 
-  }
+
 }
 
