@@ -63,7 +63,7 @@ Básico\\Revezamento de Processos}
   \centering
   \large
   Associe os tipos aos conceitos:
-  \begin{tabular}{|c|p{5cm}|} \\ \hline
+  \begin{tabular}{|c|p{5cm}|}  \hline
   int & Posição de memória que contém o endereço de uma posição de memória onde
     está armazenado um número. \\ \hline
   int* & Posição de memória onde está armazenado um número. \\ \hline
@@ -72,6 +72,26 @@ Básico\\Revezamento de Processos}
   \end{tabular}
 \end{frame}
 
+\begin{frame}[fragile]{Memória}
+  \centering
+  \large
+  Um sistema de administração de memória é responsável por receber pedidos de
+  dados na memória feitos por um programa. Por exemplo:
+  \begin{verbatim}
+  int *a = 0;
+  (*a) = 5;
+  \end{verbatim}
+  significa que o programa atribui o valor 5 à posição de memória 0.
+
+  Suponha que o sistema de administração resolve, por conta própria, adicionar
+  10 a todos os endereços requisitados pelo programa (no código acima, o valor 5
+  seria atribuído à posição de memória 10). Nesse caso:
+  \begin{enumerate}
+    \item O programa quebra?
+    \item O programa quebra, a menos que seja modificado?
+    \item A atuação do sistema é irrelevante para o funcionamento do programa
+  \end{enumerate}
+\end{frame}
 
 \begin{frame}[fragile]{Memória}
   \centering
@@ -81,6 +101,11 @@ Básico\\Revezamento de Processos}
   seguinte solução: o sistema de administração de memória atribui um
   \textit{offset} a todos os pedidos de conteúdo de memória de um programa. Esse
   \textit{offset} é único para cada programa.
+  \begin{enumerate}
+    \item Os programas funcionam normalmente, ou é preciso modificá-los?
+    \item Em que condições seria possível quebrar esse sistema de segurança e
+      acessar a memória de outro programa?
+  \end{enumerate}
 \end{frame}
 
 \begin{frame}[fragile]{Memória}
@@ -93,12 +118,17 @@ Básico\\Revezamento de Processos}
   \textit{offset} é único para cada programa. Além disso, o sistema de
   administração sabe quanta memória cada programa usa, e restringe
   intencionalmente o acesso a memória fora do segmento pré-determinado.
+  \begin{enumerate}
+    \item Os programas funcionam normalmente, ou é preciso modificá-los?
+    \item Em que condições seria possível quebrar esse sistema de segurança e
+      acessar a memória de outro programa?
+  \end{enumerate}
 \end{frame}
 
 
 \begin{frame}[fragile]{Memória}
   \centering
-  \large
+  \Large
   \textit{... o sistema de
   administração sabe quanta memória cada programa usa, e restringe
   intencionalmente o acesso a memória fora do segmento pré-determinado.}
@@ -115,12 +145,14 @@ Básico\\Revezamento de Processos}
   operando no segmento que vai dos endereços físicos 0 a 49, e outro está operando no
   segmento que vai dos endereços físicos 50 a 99. Ambos executam o código:
   \begin{verbatim}
-  int *a = 0;
+  int *a = 10;
   (*a) = 12;
   \end{verbatim}
 
   Mostre o conteúdo da memória física do computador (assumindo que ela foi
-  inicializada em zero) ao fim dos dois programas.
+  inicializada em zero) ao fim dos dois programas. Depois, escolha um valor a
+  ser atribuido ao ponteiro $a$ na primeira linha de forma a causar uma falha de
+  segmentação no programa.
 \end{frame}
 
 
@@ -136,9 +168,10 @@ Básico\\Revezamento de Processos}
 
 \begin{frame}{Pausando um simulador}
   \large
-  Suponha que um simulador de microprocessador possa ser
-  ``pausado'' antes de ser desligado, e
-  depois retome quando ligado novamente. Quais elementos (de
+  Gostaríamos de implementar a possibilidade de ``pausar'' nosso simulador
+  antes de ser desligado, de forma que,
+  depois, ele retome as mesmas atividades quando ligado novamente.
+  Quais elementos (de
   hardware e software) devem ser restaurados para garantir que o simulador
   retome sua operação \textit{exatamente do mesmo ponto} que estava antes de ser
   pausado?
@@ -146,9 +179,9 @@ Básico\\Revezamento de Processos}
 
 \begin{frame}{Pausando processo}
   \large
-Suponha que um processo, num computador, possa ser
-  ``pausado'' antes do computador ser desligado, e
-  depois retome quando o computador é ligado novamente. Quais elementos (de
+  Gostaríamos de pausar um processo em nosso computador, de forma que, ao ligar
+  novamente o computador, ele retome as atividades, exatamente do mesmo ponto
+  que estava. Quais elementos (de
   hardware e software) devem ser restaurados para garantir que o processo
   retome sua operação \textit{exatamente do mesmo ponto} que estava antes de ser
   pausado?
@@ -156,10 +189,26 @@ Suponha que um processo, num computador, possa ser
 
 \begin{frame}{Mudando de processos}
   \large
-  Suponha que um processo A, num computador, será ``pausado'' para que outro
+  Um processo A, num computador, será ``pausado'' para que outro
   processo B passe a ser executado. Mostre todos os passos necessários para
   passar do processo A ao processo B, e depois para retomar o processo A, sem
   que haja perda de informação nesse processo.
+\end{frame}
+
+\begin{frame}{Sistema multi-processo}
+  \Large
+  Um celular está tocando uma música ao mesmo tempo que faz o download de um
+  aplicativo, e, enquanto isso, o usuário está tirando fotos.
+  \begin{enumerate}
+    \item Quais são os processos que estão executando no celular?
+    \item Quais recursos do celular são usados por cada um deles?
+    \item Usando os operadores \textsc{salvar estado} e \textsc{carregar
+      estado}, mostre como a CPU do celular pode executar os processos todos de
+      forma aparentemente simultânea.
+    \item Para cada um dos processos, qual é a consequência de passar muito tempo
+      sem ter tido acesso à CPU?
+  \end{enumerate}
+
 \end{frame}
 
 
