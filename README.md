@@ -19,6 +19,8 @@ Prazo | Tarefa
  04/09    | Exercício no Moodle: Gramáticas Livres de Contexto
  12/09    | Primeira versão do relatório do trabalho 1
  19/09    | Versão final do relatório do trabalho 1
-
+ 26/09    | Exercício no Moodle: Recursos compartilhados
+ 02/10    | Laboratório: [multitarefa em tempo
+ real](https://github.com/EAxxx/scheduler-demo)
 
 
