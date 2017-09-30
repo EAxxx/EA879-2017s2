@@ -1,0 +1,157 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[Revisão 2]{EA879 -- Introdução ao Software Básico\\Revisão -- Parte 2}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Revisão}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Identificar relações entre diferentes aspectos do conteúdo da aula
+      até o momento
+    \item Escrever textos concisos e efetivos que evidenciem essas relações
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Mapa conceitual}
+  \centering
+  \large
+  Nossa disciplina começou com a análise de gramáticas regulares e culminou com
+  a implementação de uma linguagem de domínio específico.
+  \begin{enumerate}
+    \item Junto à classe, vamos colocar na lousa o nome de todos os elementos
+      que foram usados durante essa progressão (apenas substantivos!)
+    \item <2-> Após, unieremos cada par de substantivos com um verbo, até
+      completar o raciocínio todo.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Construção de frases}
+  \centering
+  \large
+  \begin{enumerate}
+    \item Escolha um par de substantivos que esteja ligado. Escreva uma frase que
+  tenha o mesmo conteúdo que foi representado graficamente. A frase deve ter
+      sentido. Corrija sua frase junto a seu grupo.
+    \item<2-> Identifique o sujeito, o verbo e o objeto de sua frase.
+    \item<3-> Escolha um substantivo que se ligue ao objeto de sua frase no mapa
+      conceitual. Crie uma nova frase na qual o antigo objeto é o sujeito, o
+      novo substantivo é o objeto e a frase contém o sentido deste novo nó.
+    \item<4-> Pensando nas duas frases que você escreveu: é possível deixá-las
+      menos repetitivas usando pronomes?
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Reflexão}
+  \centering
+  \large
+  Você assistirá a uma demonstração ao vivo da comparação de dois programas de
+  multiplicação de matrizes, um escrito em C (uma linguagem compilada) e um em
+  Python (uma linguagem interpretada). Faça predições (e explique as premissas
+  que te levaram a pensar isso) para:
+  \begin{itemize}
+  \item Qual programa tem menos linhas de código?
+  \item Qual programa é mais rápido?
+  \item Qual programa levou mais tempo para implementar?
+  \end{itemize}
+  Após a demonstração, suas predições se confirmaram? O que isso quer dizer em
+  relação a suas premissas?
+\end{frame}
+
+\begin{frame}[fragile]{Evidências}
+  \centering
+  \large
+  Identifique o que são evidências e o que são conclusões
+  \begin{enumerate}
+  \item O código em Python tem 10 linhas.
+  \item O código em C tem 133 linhas.
+  \item O código em Python é mais simples que o código em C.
+  \item O código em Python é mais rápido que o código em C.
+  \item O código em Python executa 100 vezes mais rápido que o código em C.
+  \end{enumerate}
+  Após, escreva dois pequenos parágrafos conectando as evidências a suas
+  respectivas conclusões.
+\end{frame}
+
+\begin{frame}[fragile]{Evidências}
+  \centering
+  O código em Python tem 10 linhas, ao passo que um programa equivalente em C
+  tem 133 linhas. Portanto, o código em Python é mais simples que o código em C.
+  \vspace{2cm}
+  Em nossas medições, o programa escrito em Python executou 100 vezes mais
+  rápido que o programa em C. Isso significa que o programa em Python é mais
+  rápido.
+\end{frame}
+
+\begin{frame}[fragile]{Corrija as seguintes frases}
+  \centering
+  O código em Python tem 10 linhas. Um programa equivalente em C
+  tem 133 linhas. Apesar disso, o código em Python é mais simples que o código em C.
+  \vspace{2cm}
+  Em nossas medições, o programa escrito em Python executou 100 vezes mais
+  rápido que o programa em C. Portanto, Python é uma linguagem mais rápida
+  que C.
+\end{frame}
+
+\begin{frame}[fragile]{Encontre as hipérboles:}
+  \centering
+  \large
+  Programas feitos em C são sempre avaliados como de extrema velocidade.
+  Programas feitos em Python são constantemente tidos como muito lentos, embora
+  tenham codificação muito simples e intuitiva.
+\end{frame}
+
+\begin{frame}[fragile]{Agora, encontre as especulações}
+  \centering
+  \large
+  Programas feitos em C são \textbf{sempre} avaliados como de \textbf{extrema} velocidade.
+  Programas feitos em Python são \textbf{constantemente} tidos como
+  \textbf{muito} lentos, embora
+  tenham codificação \textbf{muito simples e intuitiva}.
+\end{frame}
+
+\begin{frame}[fragile]{Há um problema...}
+  \centering
+  \large
+  Programas feitos em C são \textit{ \textbf{sempre} avaliados como de
+  \textbf{extrema} velocidade.}
+  Programas feitos em Python são \textit{ \textbf{constantemente} tidos como
+  \textbf{muito} lentos, embora
+  tenham codificação \textbf{muito simples e intuitiva}.}
+\end{frame}
+
+
+\end{document}
