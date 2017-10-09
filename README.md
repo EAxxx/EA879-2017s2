@@ -21,7 +21,8 @@ Prazo | Tarefa
  19/09    | Versão final do relatório do trabalho 1
  26/09    | Exercício no Moodle: Recursos compartilhados
  02/10    | Laboratório: [multitarefa em tempo real](https://github.com/EAxxx/scheduler-demo)
- 10/10    | Exercício no Moodle: Processos
+ 12/10    | Exercício no Moodle: Processos
+ 19/10    | Exercício no Moodle: Processos e Compartilhamento de Memória
 
 
 
