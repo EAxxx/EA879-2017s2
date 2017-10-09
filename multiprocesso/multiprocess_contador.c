@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/mman.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 int main() {
@@ -54,6 +55,8 @@ int main() {
     exit(EXIT_SUCCESS);
   }
 
-  sleep(1);
+  int status;
+  waitpid(p1, &status, 0);
+  waitpid(p2, &status, 0);
   return 0;
 }

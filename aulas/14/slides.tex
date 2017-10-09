@@ -1,0 +1,221 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[14-memshare]{EA879 -- Introdução ao Software
+Básico\\Estrutura Dispatcher}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 14 -- 10/outubro/2018}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender como é possível compartilhar memória entre dois processos
+    \item Entender quanto a estrutura de dispatcher é útil
+    \item Comparar a estrutura de memória compartilhada com a estrutura pipes
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Revisão}
+  \centering
+  \large
+  \begin{verbatim}
+  #include <stdio.h>
+  int main() {
+    char x='a';
+    while ( (x>='a') && (x<='z') ) {
+      scanf("%c", &x);
+      if (x=='c') printf("cc");
+      else printf("%c", x);
+    }
+  }
+  \end{verbatim}
+
+  Qual será a saída da chamada:
+  \begin{verbatim}
+  echo "bandeco" | ./main | ./main | ./main
+  \end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]{Revisão}
+  \centering
+  \LARGE
+  Assinale as alternativas corretas:
+  \begin{enumerate}
+    \item Cada chamada ao programa ./main leva à criação de um novo processo,
+      cada um com seu próprio identificador PID
+    \item O programador que invocou processos usando pipes deve saber exatamente
+      como cada um dos programas funciona internamente
+    \item O programador que invocou processos usando pipes só precisa saber
+      quais são as entradas e saídas que o programa recebe ou fornece
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Problema: pizzaria delivery}
+  \centering
+  \Large
+  Uma pizzaria faz entregas à domicílio. Estime o tempo médio que leva entre
+  receber a
+  ligação de um cliente e a entrega da pizza, pensando que o tempo de preparo de
+  uma pizza é muito pequeno, e que tanto a pizzaria quanto os clientes ficam
+  em Barão
+  Geraldo (região central, entre a moradia e a Unicamp), e que, ao sair para
+  entrega, só é possível levar uma pizza de cada vez, assumindo os casos:
+  \begin{enumerate}
+    \item A pizzaria tem um único funcionário, que atende o telefone, faz pizzas
+      e entrega;
+    \item A pizzaria tem três funcionários: um que atende o telefone, um que faz
+      pizzas e outro que faz entregas;
+    \item A pizzaria tem dez funcionários: um que atende o telefone, um que
+      faz pizzas e oito entregadores;
+  \end{enumerate}
+  Considere os casos de dias de baixa demanda e de altíssima demanda.
+\end{frame}
+
+\begin{frame}[fragile]{Problema: servidor responsivo}
+  \centering
+  \Large
+  Um servidor web recebe requisições de termos de busca, e retorna listas de
+  documentos que são relevantes a essa busca. Fazer uma busca no banco de dados
+  demora alguns segundos, e, tipicamente, o processo de envio demora mais alguns
+  segundos, dependendo da velocidade da conexão do usuário. Em momentos de baixa
+  e de alta demanda, qual é o tempo de resposta médio do servidor para os casos:
+  \begin{enumerate}
+    \item O servidor opera em um único processo que recebe requisições, faz a
+      busca no banco de dados e retorna os resultados ao usuário;
+    \item Ao receber uma nova requisição, o servidor cria um novo processo-filho
+      (usando fork()) que faz a busca no banco de dados e retorna documentos ao
+      usuário.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Dispatcher}
+  \centering
+  \LARGE
+  Trata-se de um \textit{design pattern} no qual um elemento central é
+  responsável por inicializar \textit{trabalhadores} para cada uma das
+  requisições que recebe.
+\end{frame}
+
+\begin{frame}[fragile]{Dispatcher ou pipeline?}
+  \centering
+  \Large
+  Cada afirmação abaixo está mais relacionada ao padrão dispatcher ou a idéia de
+  pipelines?
+  \begin{enumerate}
+  \item Cada programa do padrão POSIX faz somente uma coisa, e faz bem.
+  \item Os gerenciadores de plugin do Firefox executam em processos isolados.
+  \item O WhatsApp permite manter diversas conversas abertas sem que uma
+    influencie a outra.
+  \item É possível compilar um documento LaTeX para PDF, convertê-lo para
+    texto puro e então contar suas palavras.
+  \item Cada trabalhador numa linha de produção executa uma pequena parte do
+    processo produtivo.
+  \item Num ateliê de artesãos, cada um é responsável por fazer uma das peças
+    que vão decorar o casamento da Marina Rui Barbosa.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Problema: multiplicação de matrizes}
+  \centering
+  \Large
+  Junto ao seu grupo, analise o problema da multiplicação de matrizes:
+  \begin{equation}
+  X = BA \rightarrow x_{i,j} = \sum_{k=1}^K b_{i, k} a_{k, j}.
+  \end{equation}
+  \begin{enumerate}
+    \item O cálculo de cada elemento de $X$ depende do resultado dos outros
+      elementos?
+    \item O cálculo de cada elemento de $X$ poderia ser executado em paralelo
+      aos demais?
+    \item Para resolver computacionalmente esse problema, é mais adequado o
+      padrão dispatcher ou o padrão pipeline?
+    \item Que problema (sem considerar o desempenho) será encontrado se um novo
+      processo for inicializado para calcular cada elemento de $X$?
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Solução: compartilhar memória}
+  \Large
+  Função mmap: retorna um ponteiro para uma área de memória que é compartilhada
+  entre processos. Deve ser alocada de forma semelhante a um malloc:
+  \begin{verbatim}
+  int protection = PROT_READ | PROT_WRITE;
+  int visibility = MAP_SHARED | MAP_ANON;
+
+  /* Criar area de memoria compartilhada */
+  int *b;
+  b = (int*) mmap(NULL, sizeof(int)*100, protection, visibility, 0, 0);
+  \end{verbatim}
+
+  Leitura detalhada sobre o que significa cada parâmetro: \textsc{man mmap}
+\end{frame}
+
+
+\begin{frame}[fragile]{Demonstração: multiprocesso com e sem mmap}
+  \centering
+  \Large
+  Veja a demonstração de multiprocesso com e sem mmap.
+\end{frame}
+
+\begin{frame}[fragile]{Memory Maps}
+  \centering
+  \Large
+  Em quais dessas aplicações seria desejável compartilhar memória entre
+  processos com mmap:
+  \begin{enumerate}
+    \item Realizar cálculos longos de forma distribuída
+    \item Responder a requisições num webserver
+    \item Encadear diversos processadores (como plugins) de imagem diferentes
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Problema}
+  \centering
+  \large
+  Na demonstração de código que você verá, identifique:
+  \begin{enumerate}
+  \item Qual é o padrão de design usado (produtor-consumidor, dispatcher ou
+    tarefas paralelas)?
+  \item O que o programa deveria fazer?
+  \item O que o programa está, realmente, fazendo?
+  \item Que tipo de funcinalidade poderia corrigir esse problema?
+  \end{enumerate}
+\end{frame}
+
+
+
+\end{document}

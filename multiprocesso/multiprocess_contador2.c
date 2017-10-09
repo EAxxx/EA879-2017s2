@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 int main() {
 
@@ -63,7 +64,9 @@ int main() {
     printf("Contei %d quebras de linha!\n", count);
     exit(EXIT_SUCCESS);
   }
+  int status;
+  waitpid(p1, &status, 0);
+  waitpid(p2, &status, 0);
 
-  sleep(1);
   return 0;
 }
