@@ -19,8 +19,9 @@ void* produtor(void *arg) {
   for (int i = 0; i < producoes; i++) {
     while (total_buffer == tam_buffer);
 
-    pthread_mutex_lock(&trava);
     buffer[inicio_buffer] = i;
+
+    pthread_mutex_lock(&trava);
     total_buffer += 1;
     pthread_mutex_unlock(&trava);
 
@@ -34,8 +35,9 @@ void* consumidor(void *arg) {
   for (int j = 0; j < producoes; j++) {
     while (total_buffer == 0);
 
-    pthread_mutex_lock(&trava);
     printf("%d\t", buffer[final_buffer]);
+
+    pthread_mutex_lock(&trava);
     total_buffer -= 1;
     pthread_mutex_unlock(&trava);
 
