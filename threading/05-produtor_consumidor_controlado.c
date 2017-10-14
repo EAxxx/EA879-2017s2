@@ -39,8 +39,8 @@ int main(int argc, char **argv) {
 
   pthread_t thread_prod, thread_cons;
 
-  pthread_create(&thread_prod, NULL, &produtor, NULL);
-  pthread_create(&thread_cons, NULL, &consumidor, NULL);
+  pthread_create(&thread_prod, NULL, produtor, NULL);
+  pthread_create(&thread_cons, NULL, consumidor, NULL);
 
   pthread_join(thread_prod, NULL);
   pthread_join(thread_cons, NULL);
