@@ -72,7 +72,7 @@ Básico\\Estrutura Dispatcher}
 
 \begin{frame}[fragile]{Revisão}
   \centering
-  \LARGE
+  \Large
   Assinale as alternativas corretas:
   \begin{enumerate}
     \item Cada chamada ao programa ./main leva à criação de um novo processo,
@@ -86,7 +86,7 @@ Básico\\Estrutura Dispatcher}
 
 \begin{frame}[fragile]{Problema: pizzaria delivery}
   \centering
-  \Large
+  \large
   Uma pizzaria faz entregas à domicílio. Estime o tempo médio que leva entre
   receber a
   ligação de um cliente e a entrega da pizza, pensando que o tempo de preparo de
@@ -107,7 +107,7 @@ Básico\\Estrutura Dispatcher}
 
 \begin{frame}[fragile]{Problema: servidor responsivo}
   \centering
-  \Large
+  \large
   Um servidor web recebe requisições de termos de busca, e retorna listas de
   documentos que são relevantes a essa busca. Fazer uma busca no banco de dados
   demora alguns segundos, e, tipicamente, o processo de envio demora mais alguns
@@ -124,7 +124,7 @@ Básico\\Estrutura Dispatcher}
 
 \begin{frame}[fragile]{Dispatcher}
   \centering
-  \LARGE
+  \Large
   Trata-se de um \textit{design pattern} no qual um elemento central é
   responsável por inicializar \textit{trabalhadores} para cada uma das
   requisições que recebe.
@@ -132,7 +132,7 @@ Básico\\Estrutura Dispatcher}
 
 \begin{frame}[fragile]{Dispatcher ou pipeline?}
   \centering
-  \Large
+  \large
   Cada afirmação abaixo está mais relacionada ao padrão dispatcher ou a idéia de
   pipelines?
   \begin{enumerate}
@@ -151,7 +151,7 @@ Básico\\Estrutura Dispatcher}
 
 \begin{frame}[fragile]{Problema: multiplicação de matrizes}
   \centering
-  \Large
+  \large
   Junto ao seu grupo, analise o problema da multiplicação de matrizes:
   \begin{equation}
   X = BA \rightarrow x_{i,j} = \sum_{k=1}^K b_{i, k} a_{k, j}.
@@ -169,7 +169,7 @@ Básico\\Estrutura Dispatcher}
 \end{frame}
 
 \begin{frame}[fragile]{Solução: compartilhar memória}
-  \Large
+  \large
   Função mmap: retorna um ponteiro para uma área de memória que é compartilhada
   entre processos. Deve ser alocada de forma semelhante a um malloc:
   \begin{verbatim}
@@ -178,7 +178,8 @@ Básico\\Estrutura Dispatcher}
 
   /* Criar area de memoria compartilhada */
   int *b;
-  b = (int*) mmap(NULL, sizeof(int)*100, protection, visibility, 0, 0);
+  b = (int*) mmap(NULL, sizeof(int)*100,
+                protection, visibility, 0, 0);
   \end{verbatim}
 
   Leitura detalhada sobre o que significa cada parâmetro: \textsc{man mmap}
@@ -223,7 +224,7 @@ Básico\\Estrutura Dispatcher}
   \begin{enumerate}
   \item Qual é a variável que controla o acesso aos recursos compartilhados?
   \item Por que o processo p2 não fica em loop infinito na linha
-    \textttwhile(N==0);}?
+    \texttt{while(N==0);}?
   \end{enumerate}
 \end{frame}
 

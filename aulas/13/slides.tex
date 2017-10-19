@@ -1,0 +1,182 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[13-posix-e-arquivos]{EA879 -- Introdução ao Software
+Básico\\Arquivos e POSIX}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 13 -- 5/outubro/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender como arquivos operam em POSIX
+    \item Entender a relação entre arquivos e ponteiros em POSIX
+    \item Usar arquivos especiais STDIN e STDOUT
+    \item Aplicar o redirecionamento de entradas e saídas (pipe)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Previously on EA879...}
+  \centering
+  \Large
+  Qual é o resultado de executar:
+  \begin{verbatim}
+  while(1) { fork(); }
+  \end{verbatim}
+  \begin{enumerate}
+    \item Segmentation fault
+    \item Programa trava no loop infinito
+    \item Sistema operacional congela e o computador tem que ser resetado
+    \item Nenhuma das anteriores
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivos em Linux}
+  \centering
+  \large
+  \begin{enumerate}
+    \item Entenda o código fonte que será mostrado
+    \item <2-> Trace um mapa conceitual mostrando como um dado no disco rígido
+      pôde ser acessado como uma variável na memória
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Arquivos especiais: stdin e stdout}
+  \centering
+  \large
+  Na demonstração de código a seguir, mantenha o foco em entender o que
+  os identificadores stdin e stdout representam.
+\end{frame}
+
+\begin{frame}[fragile]{Redirecionamento de saída e de entrada}
+  \centering
+  \Large
+  Analise o código do script de teste dos laboratórios e verifique o que os
+  operadores < e > representam.
+\end{frame}
+
+\begin{frame}[fragile]{Processamento de arquivos com pouca memória}
+  \centering
+  \large
+  Considere a sequência de instruções:
+  \begin{itemize}
+    \item Abrir arquivo (ele tem 50 TB)
+    \item Carregar conteúdo do arquivo para a memória
+    \item Somar 1 a todos os caracteres
+    \item Abrir um novo arquivo
+    \item Gravar o resultado no novo arquivo
+    \item Fechar o novo arquivo
+    \item Fechar o arquivo original
+  \end{itemize}
+  Modifique esse programa de forma que seja possível executá-lo usando somente
+  1MB de memória RAM.
+\end{frame}
+
+\begin{frame}[fragile]{Processamento de arquivos com pouca memória}
+  \centering
+  \Large
+  Qual dos programas começa a gerar saídas em menos tempo, à partir de sua
+  execução?
+\end{frame}
+
+\begin{frame}[fragile]{Programas responsivos}
+  \centering
+  \Large
+  Nos códigos-fonte de criptografia que analisaremos,
+  verifique se o processamento está sendo
+  feito em streaming ou se o arquivo é carregado inteiramente para a memória.
+
+  Por que você acha que essa opção é vantajosa?
+\end{frame}
+
+\begin{frame}[fragile]{Análise}
+  \centering
+  \large
+  Quais das situações abaixo poderiam descrever bem o nosso processo de
+  programação até o momento:
+  \begin{enumerate}
+    \item Uma tarefa é dividida em partes iguais e direcionada para
+      processos trabalhadores
+    \item Um processo produz dados e um outro processa (consome) esses dados
+    \item Para cada nova tarefa, um novo processo é gerado
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Padrão de design produtor-consumidor}
+  \centering
+  \large
+  Nas linhas de comando abaixo, identifique os produtores e os consumidores
+  \begin{enumerate}
+    \item ls $|$ grep c
+    \item cat ``teste.txt'' $|$ wc
+    \item cat ``teste.txt'' $|$ grep c $|$ wc
+    \item <2-> uma fila de pipes: pipeline!
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Demonstração}
+  \centering
+  \Large
+  Verifique como invocar pipes de dentro de um programa escito em C. Qual é a
+  vantagem de fazer isso?
+\end{frame}
+
+\begin{frame}[fragile]{Discussão}
+  \centering
+  \large
+  Em quais situações abaixo poderíamos usar o padrão de design produtor-consumidor:
+  \begin{enumerate}
+    \item Gerar números aleatórios e então ordená-los
+    \item Contar os caracteres de vários arquivos diferentes
+    \item Processar um arquivo de texto em etapas pequenas, numa sequência
+      pré-definida
+    \item Simular uma série de pedais de efeito sonoro de guitarra (como plugins
+      de áudio no Reaper)
+    \item Manter uma interface gráfica rodando enquanto dados são processados
+      num processo oculto ao usuário (como o MatLab)
+    \item Dividir uma tarefa de busca entre vários trabalhadores diferentes
+      (como o Google)
+    \item Processar independentemente cada uma das requisições de cálculo que
+      chega a um sistema (como o Wolfram Alpha)
+  \end{enumerate}
+
+\end{frame}
+
+
+
+
+\end{document}

@@ -6,7 +6,7 @@ int main() {
 
   int contador = 0;
 
-  fp = popen("ls -R ~/", "r");
+  fp = popen("ls ~/", "r");
 
 
   while (c != EOF) {
