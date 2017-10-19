@@ -1,0 +1,222 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[15-threads]{EA879 -- Introdução ao Software
+Básico\\Threads}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 15 -- 19/outubro/2018}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender as semelhanças e diferenças entre threads e processos
+    \item Aplicar análise de código como ferramenta de aprendizado
+    \item Entender sincronização de threads (join)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Previously, on EA879...}
+  \centering
+  \Large
+  \begin{itemize}
+  \item Processos
+  \item Pipes
+  \item Preempção
+  \item Fork
+  \item Memória compartilhada
+  \item Dispatchers
+  \item Produtor-consumidor
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Revisão}
+  \centering
+  \Large
+  \begin{itemize}
+    \item Seria correto dizer que threads são subdivisões de processos?
+
+    \item <2-> Threads são linhas de execução que acontecem dentro de um processo. Então,
+podemos dizer que processos são compostos de uma ou mais threads, e, portanto,
+  threads são subdivisões de processos.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Revisão}
+  \centering
+  \Large
+  \begin{itemize}
+    \item O texto da Wikipedia diz que uma vantagem de threads é que elas
+      permitem simplificar modelos de computação. Proponha uma situação em que a
+      solução usando threads é significativamente mais simples que a solução sem
+      threads.
+
+    \item <2-> Situações em que duas coisas acontecem de forma concorrente, mas
+      que podem interromper uma à outra. Um webserver, por exemplo (há a
+      tarefa de receber requisições e a tarefa de responder requisições).
+      Também: programas com interface responsiva, programas que acessam várias
+      URLs ao mesmo tempo...
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Revisão}
+  \centering
+  \Large
+  \begin{itemize}
+    \item Também segundo a Wikipedia, threads são ``mais rápidas de criar que
+      processos porque não possuem quaisquer recursos associados a eles''. A
+      quais recursos de máquina isso se refere?
+
+    \item <2-> A memória é compartilhada entre threads, então não é preciso
+      trocar a memória quando há uma troca da execução entre threads.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Revisão}
+  \centering
+  \Large
+  \begin{itemize}
+    \item A terceira vantagem de threads, segundo a Wikipedia, é que, quando há
+      uma grande quantidade de entradas e saídas, programas feitos em
+      multi-thread são mais rápidos. Por que isso acontece? Proponha uma
+      situação que exemplifique essa situação.
+
+    \item <2-> Quando há um processo de E/S, a thread que realiza a E/S passa
+      algum tempo parada, esperando uma resposta do dispositivo externo (por
+      exemplo: esperando que um dado seja gravado no disco). Durante esse tempo,
+      uma outra thread pode executar. Exemplo: acessar bancos de dados com
+      muitas requisições.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Exercício}
+  \centering
+  \Large
+  Exercício 1
+  \begin{enumerate}
+    \item <2-> \textsc{pthread.h}
+    \item <3-> \textsc{pthreat\_t}
+    \item <4-> \textsc{pthread\_create()}
+    \item <5-> \textsc{10}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício}
+  \centering
+  \Large
+  Exercício 2
+  \begin{enumerate}
+    \item <2-> \textsc{int M} tem escopo local
+  \end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]{Exercício}
+  \centering
+  \Large
+  Exercício 3
+  \begin{enumerate}
+    \item <2-> \textsc{pthread\_join(x)} espera a thread x terminar
+    \item <3-> A thread principal só encerra depois que as threads criadas por
+      ela terminam.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício}
+  \centering
+  \Large
+  Exercício 4
+  \begin{enumerate}
+    \item <2-> \textsc{produtor()} povoa um buffer com 20 inteiros de 0 a 19
+    \item <3-> \textsc{consumidor()} escreve o buffer na tela
+    \item <4-> Saída: escrever na tela números inteiros de 0 a 19.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício}
+  \centering
+  \Large
+  Exercício 5
+  \begin{enumerate}
+    \item <2-> \textsc{int total\_buffer} e suas referências
+    \item <3-> Evitam que o consumidor leia números que não foram produzidos
+      e evita que o produtor sobrescreva números que não foram lidos.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Mutex: eu tenho a chave!}
+  \centering
+  \Large
+  Problema do banheiro do posto na estrada:
+  a chave tem que ser retirada com o frentista.
+  \begin{enumerate}
+    \item Que situações isso evita?
+    \item O que acontece se alguém pedir a chave, mas ela estiver emprestada?
+    \item O que acontece se alguém não devolver a chave?
+    \item <2->\textsc{mutex\_lock()} é ``pedir a chave''
+    \item <2->\textsc{mutex\_unlock()} é ``devolver a chave''
+    \item <2->Comportamento de espera é automático
+    \item <2->O ``banheiro'' é chamado de \textbf{região crítica}.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício}
+  \centering
+  \Large
+  Exercício 6
+  \begin{enumerate}
+    \item <2-> As partes que se referem à alteração do número de elementos no
+      buffer
+    \item <3-> Evitam que outra thread acesse aquela região
+    \item <4-> Por que o acesso concorrente a essa região pode gerar
+      inconsistências de dados
+  \end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]{Revisão}
+  \centering
+  \Large
+  \begin{enumerate}
+    \item Para que serve uma thread? Qual é a diferença em relação a um
+      processo?
+    \item O que é uma região crítica?
+    \item Em que situação threads podem gerar inconsistências de dados?
+    \item Como mutexes podem ajudar a resolver essas situações?
+  \end{enumerate}
+\end{frame}
+
+\end{document}
