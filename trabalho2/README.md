@@ -33,17 +33,16 @@ invertê-las ou adicionar novas, se achar necessário.
 1. Implemente algumas variações de sua linguagem, contemplando os seguintes
    casos:
    1. O brilho é aplicado usando múltiplas threads, varrendo a matriz em suas
-      linhas.
-   1. O brilho é aplicado usando múltiplas threads, varrendo a matriz em suas
-      colunas
+      linhas. Varie o número de threads até encontrar um número ótimo.
    1. O brilho é aplicado usando múltiplos processos, varrendo a matriz em suas
-      linhas.
-   1. O brilho é aplicado usando múltiplos processos, varrendo a matriz em suas
-      colunas
+      linhas. Varie o número de processos até encontrar um número ótimo.
+   1. O brilho é aplicado usando uma única linha de execução, varrendo a matriz
+      em suas linhas.
+   1. O brilho é aplicado usando uma única linha de execução, varrendo a matriz
+      em suas colinas.
 1. Verifique a diferença do tempo de execução de cada uma das variações,
-   considerando imagens de diferentes tamanhos (32 por 32 pixels ou imagens
-   gigantescas)
-1. Encontre o número de threads e de processos que torna o processo mais rápido.
+   considerando imagens de diferentes tamanhos (use imagens bem pequenas, como
+   cliparts de 32 por 32 pixels, e também imagens gigantescas)
 1. Por fim, decida-se sobre qual é a variação da função que é mais rápida para
    imagens pequenas e qual é mais rápida para imagens grandes.
 
@@ -61,16 +60,16 @@ contendo:
      trata o documento, em uma linguagem que poderia ser entendida por qualquer
      pessoa que entenda programação (ou seja: referências diretas à disciplina
      não são desejáveis)
-  1. **Demonstração**, isto é, os resultados de medições de desempenho (cache
-     misses, tempo de execução e número de processadores utilizados) para cada
-     uma das versões implementadas.
+  1. **Demonstração**, isto é, os resultados de medições de desempenho
+  (tempo de execução) para cada  uma das versões implementadas.
   1. **Análise** discutindo quais são os fatores que têm maior impacto no
      desempenho da nova função brilho, evidenciando *qual é o recurso de máquina
      que representa o maior gargalo para a aplicação de brilho em imagens*.
 
 # Datas importantes
 
-(a discutir)
+* 21/11: Entrega da primeira versão do relatório
+* 28/11: Entrega da versão final do relatório
 
 
 
