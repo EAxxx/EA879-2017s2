@@ -23,6 +23,8 @@ Prazo | Tarefa
  02/10    | Laboratório: [multitarefa em tempo real](https://github.com/EAxxx/scheduler-demo)
  12/10    | Exercício no Moodle: Processos
  19/10    | Exercício no Moodle: Processos e Compartilhamento de Memória
-
+ 06/11    | Exercício computacional: [primesort](https://github.com/EAxxx/primesort)
+ 21/11    | Primeira versão do trabalho 1
+ 28/11    | Versão final do trabalho 2
 
 
