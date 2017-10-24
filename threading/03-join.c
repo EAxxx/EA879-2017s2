@@ -24,6 +24,7 @@ int main(int argc, char **argv) {
   for (int i = 0; i < (n_threads); i++) {
     thread_args[i] = i;
     pthread_create(&(threads[i]), NULL, funcao_thread, &(thread_args[i]));
+    for (int p = 0; p<800000; p++);
   }
 
   /* Esperando threads terminarem! */

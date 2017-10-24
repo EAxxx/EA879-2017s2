@@ -14,13 +14,13 @@ void *thread1(void *args) {
     sleep(1); /* Troque isso por alguma acao demorada */
     printf("Thread 1 tentando pegar trava 2\n");
     status = pthread_mutex_trylock(&trava2);
-    if (status==0) {
+    if (status==0) { /* Consegui trava2 */
       printf("Estou no loop da thread 1! i=%d\n", i);
       pthread_mutex_unlock(&trava1);
       pthread_mutex_unlock(&trava2);
       printf("Thread 1 liberou travas 1 e 2\n");
       i++;
-    } else {
+    } else { /* Nao consegui trava2 */
       printf("***Thread 1 libera mutex 1\n");
       pthread_mutex_unlock(&trava1);
       sleep(1);

@@ -19,7 +19,7 @@ void *filosofo(void *args) {
     printf("Entrando no filosofo %d\n", N);
   while (pratos[N] < MAX_PRATO) {
 
-    /* Espera um tempo aleatorio */
+    /* Espera um tempo aleatorio inferior a 10ms*/
     usleep(rand()%10000);
     /* Pega palito a esquerda */
     pthread_mutex_lock(& (palitos[N]) );
