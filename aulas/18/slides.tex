@@ -1,0 +1,136 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[18-Pilha]{EA879 -- Introdução ao Software
+Básico\\O Heap}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 18 -- 7/novembro/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender como funciona alocação dinâmica de memória
+    \item Entender como e memória pode ser ``devolvida'' ao sistema
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Previously, on EA879...}
+  \centering
+  \Large
+  \begin{itemize}
+    \item Compiladores: RegEx e GLC
+    \item Processos, threads, preempção e mutexes
+    \item Pilha de execução: resolve sintaxe!
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 1}
+  \centering
+  \Large
+  Exercício 1
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 2}
+  \centering
+  \Large
+  Exercício 2
+\end{frame}
+
+\begin{frame}[fragile]{Heap}
+  \centering
+  \Large
+  O Heap (não confundir com a estrutura de dados \textit{heap}) é uma região da
+  memória que tem uma lista de todas as posições de memória ainda não usadas
+  pelo programa. As funções \textsc{malloc()} e \textsc{free()} buscam por
+  memória livre usando o Heap (que não é implementado usando a estrutura de
+  dados \textit{heap}). A memória alocada usando o Heap não é devolvida
+  ``automaticamente'' ao sistema após o retorno da função que alocou a memória.
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 3}
+  \centering
+  \Large
+  Exercício 3
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 4}
+  \centering
+  \Large
+  Exercício 4
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 5}
+  \centering
+  \Large
+  Exercício 5
+  \begin{enumerate}
+    \item <2-> O programa funcionaria, porque a memória alocada dinamicamente só
+      é usada dentro da própria função e, portanto, pode ser devolvida ao
+      sistema quando a função retorna.
+    \item <3-> O programa do ex. 2 não funcionaria porque a memória alocada
+      dentro da função \textsc{novo\_registro()} é usada depois,
+      em outras funções, e, portanto, não
+      pode ser devolvida ao sistema quando a função retorna.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 6}
+  \centering
+  \Large
+  Exercício 6
+\end{frame}
+
+\begin{frame}[fragile]{Conclusão}
+  \centering
+  \Large
+  Quando eu deveria usar \textsc{malloc}, \textsc{alloca} ou variáveis
+  pré-definidas (automáticas)?
+  \begin{enumerate}
+    \item Não sei o tamanho do vetor que precisarei, mas só vou usá-lo no escopo
+    local.
+    \item Preciso inicializar um \textsc{struct} que será usado por todo o
+    programa.
+    \item Preciso inicializar um número, inicialmente indefinido,
+    de \textsc{struct}s que serão usados por todo o programa.
+    \item Vou inicializar um vetor em uma função, mas usá-lo em outra função.
+    \item Sei exatamente o tamanho do vetor que vou precisar usar, e ele só será
+    usado no escopo local.
+  \end{enumerate}
+
+\end{frame}
+
+
+
+\end{document}
