@@ -1,0 +1,135 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[19-Tempo]{EA879 -- Introdução ao Software
+Básico\\Tempo de execução}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 19 -- 09/outubro/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender a diferença entre real time, user time e system time
+    \item Entender como medir tempo de execução de funções individuais
+    \item Diferenciar CPU-bound de I/O bounded
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Previously, on EA879...}
+  \centering
+  \Large
+  \begin{itemize}
+    \item Compiladores: RegEx e GLC
+    \item Processos, threads, preempção e mutexes
+    \item Pilha e Heap
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 1}
+  \centering
+  \Large
+  \begin{enumerate}
+    \item <2-> Executando instruções: micro-segundos
+    \item <3-> Tempo total: por volta de 1 segundo
+    \item <4-> (a) = user; (b) = real
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 2}
+  \centering
+  \Large
+  Exercício 2
+  \begin{enumerate}
+    \item <2-> User time: \textsc{clock()}
+    \item <3-> Real time: \textsc{gettimeofday()}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 3}
+  \centering
+  \Large
+  Exercício 3
+  \begin{enumerate}
+    \item <2-> \textsc{fopen()}
+    \item <3-> \textsc{fgetc()}
+    \item <4-> \textsc{fclose()}
+    \item <5-> Executar \textsc{time}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 4}
+  \centering
+  \Large
+  Exercício 4
+  \begin{enumerate}
+    \item <2-> O que é mais rápido: alocar memória na pilha ou no heap?
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 5}
+  \centering
+  \Large
+  Exercício 5
+  \begin{enumerate}
+    \item <2-> \textsc{fibo\_rec()}
+    \item <3-> \textsc{void *fibo(void *args)}
+    \item <4-> \textsc{void *fibo\_threads(void *args)}: cada thread calcula
+      metade da ``árvore''
+    \item <5-> Fazer hipótese. Executar \textsc{time}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 6}
+  \centering
+  \Large
+  Exercício 6
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 7}
+  \centering
+  \Large
+  Exercício 7
+\end{frame}
+
+
+\begin{frame}[fragile]{Trabalho 2}
+  \centering
+  \LARGE
+  Medição de tempo de execução (real time!)
+\end{frame}
+
+
+
+\end{document}
