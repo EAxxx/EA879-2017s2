@@ -1,0 +1,3 @@
+gcc -fPIC -c mylib2.c
+gcc -shared -o libmylib.so mylib2.c
+gcc -omain main.c -L./ -lmylib
