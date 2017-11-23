@@ -1,0 +1,151 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title[23-Linking]{EA879 -- Introdução ao Software
+Básico\\Bibliotecas estáticas e dinâmicas}
+\author{Tiago F. Tavares}
+\institute{FEEC -- UNICAMP}
+\date{Aula 23 -- 23/novembro/2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introdução}
+
+\begin{frame}[fragile]{Previously, on EA879...}
+  \centering
+  \Large
+  \begin{itemize}
+    \item Compiladores: RegEx e GLC
+    \item Processos, threads, preempção e mutexes
+    \item Pilha e Heap
+    \item Linguagens com tipagem estática e tipagem dinâmica
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Objetivos}
+  \Large
+  \begin{itemize}
+    \item Entender a diferença entre interface e implementação
+    \item Entender como distribuir e compartilhar código
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Exercício 1}
+  \centering
+  \Large
+  \begin{enumerate}
+    \item <2-> 01
+    \item <3-> 02
+    \item <4->O código usado para a implementação da função \textsc{imprimir()}
+      mudou.
+    \item <5-> O cabeçalho da função deve ser o mesmo
+    \item <6-> Definida: \textsc{interface.h}. Implementada:
+      \textsc{interface.c}.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 2}
+  \centering
+  \Large
+  \begin{enumerate}
+    \item <2-> Inicializa um vetor, calcula a média dos valores do vetor,
+      calcula a variância dos valores do vetor.
+    \item <3-> Ponteiro para o vetor e tamanho do vetor.
+    \item <4-> Retornam a média e a variância do vetor.
+    \item <5-> Quais aspectos do código facilitam sua compreensão??
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 3}
+  \centering
+  \Large
+  Exercício 3
+  \begin{enumerate}
+    \item <2-> Sim, poderia, uma vez que os dados passados nos cabeçalhos e os
+      tipos de retorno são os mesmos.
+    \item <3-> Não há consistência da ordem dos elementos nos cabeçalhos. Não há
+      correspondência semântica entre os rótulos das funções e variáveis e suas
+      aplicações.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 4}
+  \centering
+  \Large
+  Exercício 4
+  \begin{enumerate}
+    \item <2-> No Heap, já que a memória é alocada dinamicamente.
+    \item <3-> Ela recebe como parâmetro um ponteiro para o retângulo do
+      qual deve calcular a área.
+    \item <4-> Um ponteiro para qualquer tipo de dado tem o mesmo número de
+      bytes, então o typecasting é válido.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 5}
+  \centering
+  \Large
+  \begin{enumerate}
+  \item <2-> retangulos.h deve conter os cabeçalhos das funções.
+  \item <3-> Os cabeçalhos não têm referência para a struct retangulo, então não
+    é necessário defini-la no header file.
+  \item <4-> Demonstração!
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 6}
+  \centering
+  \Large
+  Exercício 6
+  \begin{enumerate}
+    \item <2-> Dinâmica
+    \item <3-> Estática
+    \item <4-> Estática
+    \item <5-> Ambas
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício 7}
+  \centering
+  \Large
+  Exercício 7
+  \begin{enumerate}
+    \item <2-> Demonstração da interface para ser modificada: código-fonte do
+      programa de interface
+    \item <3-> O algoritmo é patenteado: header file + código compilado
+    \item <4-> Oferecer atualizações: biblioteca dinâmica
+    \item <5-> \textsc{main.c}, \textsc{retangulos.h}, \textsc{retangulos.so}
+  \end{enumerate}
+\end{frame}
+
+\end{document}
+
